@@ -1,144 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>For Anaya ❤️</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>for anaya</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<style>
-body{
-margin:0;
-font-family:Arial;
-background:linear-gradient(120deg,#ff6a88,#ff99ac);
-overflow:hidden;
-text-align:center;
-color:white;
-}
+    body {
+      height: 100vh;
+      overflow: hidden;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #ffebee;
+      color: #333;
+      position: relative;
+    }
 
-.page{
-display:none;
-height:100vh;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-animation:fade 1s;
-}
+    .container {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+    }
 
-.active{
-display:flex;
-}
+    .page {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+    }
 
-h1{
-font-size:40px;
-}
+    .page.active {
+      opacity: 1;
+      z-index: 10;
+    }
 
-button{
-padding:12px 25px;
-border:none;
-background:white;
-color:#ff4d6d;
-font-size:18px;
-border-radius:20px;
-cursor:pointer;
-margin-top:20px;
-}
+    h1, p {
+      font-size: 1.9rem;
+      line-height: 1.4;
+      margin-bottom: 25px;
+    }
 
-img{
-width:220px;
-border-radius:20px;
-box-shadow:0 0 20px rgba(0,0,0,0.3);
-}
+    .small {
+      font-size: 1.4rem;
+    }
 
-@keyframes fade{
-from{opacity:0}
-to{opacity:1}
-}
+    img {
+      width: 180px;
+      height: 180px;
+      object-fit: contain;
+      margin: 15px 0;
+    }
 
-/* balloons */
-.balloon{
-position:absolute;
-bottom:-100px;
-font-size:30px;
-animation:fly 8s linear infinite;
-}
+    .btn {
+      background: #ff80ab;
+      color: white;
+      border: none;
+      padding: 14px 38px;
+      font-size: 1.2rem;
+      border-radius: 50px;
+      cursor: pointer;
+      margin-top: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
 
-@keyframes fly{
-0%{transform:translateY(0)}
-100%{transform:translateY(-110vh)}
-}
-</style>
+    .btn:active {
+      transform: scale(0.96);
+    }
+
+    .credit {
+      position: absolute;
+      top: 12px;
+      left: 0;
+      right: 0;
+      font-size: 0.9rem;
+      color: #777;
+      z-index: 20;
+    }
+
+    .balloon {
+      position: absolute;
+      bottom: -80px;
+      font-size: 2.2rem;
+      pointer-events: none;
+      animation: rise 10s linear forwards;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+
+    @keyframes rise {
+      to {
+        transform: translateY(-120vh) rotate(15deg);
+        opacity: 0;
+      }
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
 </head>
-
 <body>
 
-<audio autoplay loop>
-<source src="tere-liye.mp3" type="audio/mpeg">
-</audio>
+  <div class="credit">made by @smss1708 for anaya ♡</div>
 
-<div id="balloons"></div>
+  <audio id="music" loop>
+    <source src="tere-liye.mp3" type="audio/mpeg">
+  </audio>
 
-<!-- PAGE 1 -->
-<div class="page active">
-<h1>Hi Anaya ❤️</h1>
-<p>This website is only for you</p>
-<button onclick="next()">Click</button>
-</div>
+  <div id="p1" class="page active">
+    <h1>hi anaya 😊</h1>
+    <p class="small">i made this little thing just to make you smile</p>
+    <button class="btn" onclick="next(1)">next →</button>
+  </div>
 
-<!-- PAGE 2 -->
-<div class="page">
-<h1>🌹 A Flower For You</h1>
-<img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif">
-<button onclick="next()">Next</button>
-</div>
+  <div id="p2" class="page">
+    <img src="flower1.gif" alt="flower">
+    <p>a small flower for you 🌸</p>
+    <button class="btn" onclick="next(2)">next →</button>
+  </div>
 
-<!-- PAGE 3 -->
-<div class="page">
-<h1>🌹 Another Flower</h1>
-<img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif">
-<button onclick="next()">Next</button>
-</div>
+  <div id="p3" class="page">
+    <img src="flower2.gif" alt="flower">
+    <p>another one because why not 🌷</p>
+    <button class="btn" onclick="next(3)">next →</button>
+  </div>
 
-<!-- PAGE 4 -->
-<div class="page">
-<h1>🌹 Only For Anaya</h1>
-<img src="https://media.giphy.com/media/26BRuo6sLetdllPAQ/giphy.gif">
-<button onclick="next()">Next</button>
-</div>
+  <div id="p4" class="page">
+    <img src="flower3.gif" alt="flower">
+    <p>and one more just for you 💐</p>
+    <button class="btn" onclick="next(4)">next →</button>
+  </div>
 
-<!-- PAGE 5 -->
-<div class="page">
-<h1>I Made for You Anaya ❤️</h1>
-<img src="https://media.giphy.com/media/3oriO6qJiXajN0TyDu/giphy.gif">
-<p>You are a cutiepie </p>
-</div>
+  <div id="p5" class="page">
+    <h1>nice meeting you anaya</h1>
+    <p class="small">hope this made your day a little brighter ✨</p>
+  </div>
 
-<script>
+  <script>
+    let current = 1;
+    const total = 5;
+    const music = document.getElementById("music");
 
-let pages=document.querySelectorAll(".page");
-let current=0;
+    function next(n) {
+      document.getElementById("p" + current).classList.remove("active");
+      current = n + 1;
 
-function next(){
-pages[current].classList.remove("active");
-current++;
-if(current<pages.length){
-pages[current].classList.add("active");
-}
-}
+      if (current <= total) {
+        document.getElementById("p" + current).classList.add("active");
+      }
 
-/* balloons */
-function createBalloon(){
-let b=document.createElement("div");
-b.className="balloon";
-b.innerHTML="🎈 Anaya";
-b.style.left=Math.random()*100+"vw";
-b.style.animationDuration=5+Math.random()*5+"s";
-document.body.appendChild(b);
+      // start music after first click
+      if (n === 1) {
+        music.play().catch(() => {});
+      }
 
-setTimeout(()=>{b.remove()},8000);
-}
+      // balloons only on page 2,3,4 when next is clicked
+      if (n >= 1 && n <= 4) {
+        createBalloons();
+      }
+    }
 
-setInterval(createBalloon,800);
+    function createBalloons() {
+      for (let i = 0; i < 5; i++) {
+        let b = document.createElement("div");
+        b.className = "balloon";
+        b.innerHTML = "🎈 anaya";
+        b.style.left = (10 + Math.random() * 80) + "%";
+        b.style.animationDelay = (Math.random() * 2) + "s";
+        document.body.appendChild(b);
 
-</script>
-
+        // remove after animation
+        setTimeout(() => b.remove(), 12000);
+      }
+    }
+  </script>
 </body>
 </html>
